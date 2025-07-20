@@ -47,9 +47,10 @@ FROM
 GROUP BY
   keyword
 ORDER BY
-  avg_views DESC;```
+  avg_views DESC;
+```
 
-Findings:
+*Findings:*
 
     By Views: Keywords like "google", "animals", and "mrbeast" are associated with the highest average view counts.
 
@@ -59,11 +60,10 @@ Findings:
 
 ### 2. Do high-engagement videos have more polarized comments?
 
-Methodology:
+*Methodology:*
 To analyze the relationship between engagement and sentiment, I first created a CTE to calculate the average sentiment and the standard deviation of sentiment for each video using AVG(sentiment) and STDDEV(sentiment). A higher standard deviation indicates more polarized comments. This summary was then joined back to the main video statistics table.
-Generated sql
 
-      
+```      
 -- Simplified logic
 WITH video_sentiment_summary AS (
   SELECT
@@ -86,6 +86,7 @@ JOIN
   video_sentiment_summary AS summary ON stats.video_id = summary.video_id
 ORDER BY
   stats.views DESC;
+```
 
 *Findings:*
 Highly popular videos often exhibit an average sentiment score in the neutral-to-positive range (1.1 to 1.7). The standard deviation metric shows that high-view videos attract a wide range of opinions, leading to more polarized comment sections.
@@ -99,31 +100,31 @@ There is a clear trend indicating that videos with a very high volume of comment
 
 ### 4. What is the sentiment of the most-liked comments?
 
-Methodology:
+*Methodology:*
 A CASE statement was used to translate numeric sentiment scores (0, 1, 2) into readable labels ('Negative', 'Neutral', 'Positive'). I then joined the comments and video statistics tables and ordered the results by Likes_comms in descending order.
 
-Findings:
+*Findings:*
 The most-liked comments are not always positive. For the video "$456,000 Squid Game In Real Life!", the top-liked comments include both 'Positive' and 'Negative' sentiments. This is a crucial insight: highly engaging and viral content often thrives on discussion and controversy, where even critical comments can become extremely popular.
-5. What proportion of videos have disabled comments?
+### 5. What proportion of videos have disabled comments?
 
-Methodology:
+*Methodology:*
 Using a CASE statement, I classified videos into two categories: 'Comments Enabled' and 'Comments Disabled'. I then grouped by this status and calculated the number of videos, the percentage of the total using SAFE_DIVIDE, and the average views for each category.
 
-Findings:
+*Findings:*
 An overwhelming majority of videos (99.95%) have comments enabled. The tiny fraction of videos with disabled comments perform significantly worse, showing drastically lower average views (24k vs. 11.7M for videos with comments enabled). This suggests that disabling comments correlates with, or leads to, poor video performance.
-6. Do certain keywords attract more positive sentiment?
+#### 6. Do certain keywords attract more positive sentiment?
 
-Methodology:
+*Methodology:*
 By joining the video statistics and comment sentiment summary tables, I grouped by keyword and calculated the average sentiment for all videos associated with that keyword.
 
-Findings:
+*Findings:*
 Yes, certain keywords are strongly associated with higher positive sentiment. "Lofi", "asmr", and "music" lead the list with the highest average sentiment scores (around 1.7-1.8). This indicates that content in these niches tends to foster a more consistently positive and less controversial community response.
-7. How does publication date relate to performance?
+### 7. How does publication date relate to performance?
 
-Methodology:
+*Methodology:*
 I used the DATE_TRUNC function to group video statistics by publication month and year. This allowed for a time-series analysis of average views, likes, and comment sentiment.
 
-Findings:
+*Findings:*
 Performance is characterized by significant peaks in certain months, likely driven by a few viral hits, rather than a steady temporal trend. For example, July 2009 shows a massive spike in average views, which is not sustained in the following months. This highlights that video performance is event-driven.
 Conclusion
 
