@@ -1,7 +1,7 @@
       
 # SQL-Based Analysis of YouTube Video Performance
 
-### [Link to the dataset on Kaggle](https://www.kaggle.com/datasets/advaypatil/youtube-statistics/data)
+## [Link to the dataset on Kaggle](https://www.kaggle.com/datasets/advaypatil/youtube-statistics/data)
 
 ## Project Overview
 
@@ -128,7 +128,8 @@ I used the DATE_TRUNC function to group video statistics by publication month an
 Performance is characterized by significant peaks in certain months, likely driven by a few viral hits, rather than a steady temporal trend. For example, July 2009 shows a massive spike in average views, which is not sustained in the following months. This highlights that video performance is event-driven.
 Conclusion
 
-Also was created Tableau dashboard. Please find link 
-![Dashboard](pics/Youtube statistics Tableau Public.png)
+Also was created Tableau dashboard. Please find [Link to the dashboard](https://public.tableau.com/app/profile/olay/viz/Youtubestatistics_17531700490170/Dashboard2)
+
+![Dashboard](pics/Youtube_statistics_Tableau_Public.png)
 
 This SQL-based analysis provided several actionable insights into YouTube video performance. Key takeaways include the strong predictive power of keywords, the nuanced relationship between high engagement and polarized sentiment, and the clear performance disadvantage of disabling comments. The findings demonstrate that success on YouTube is a complex interplay of content type, community interaction, and topic selection.
